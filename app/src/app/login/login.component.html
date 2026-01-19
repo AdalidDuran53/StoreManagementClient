@@ -17,10 +17,46 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Ingresar</button>
           </form>
+          <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#registerModal"> Crear nuevo usuario </button>
           <p class="text-center mt-3 text-muted">{{ message }}</p>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal for registration new users -->
+ <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h5 class="modal-title" id="registerModalLabel">Registrar nuevo usuario</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> 
+        </div> <div class="modal-body"> <form (ngSubmit)="registerUser()"> 
+          <div class="mb-3"> 
+            <label for="username" class="form-label">Usuario</label> 
+            <input type="text" id="username" [(ngModel)]="newUser.userName" name="username" class="form-control" autocomplete="off" required> 
+          </div> 
+           <div class="mb-3"> 
+            <label for="password" class="form-label">Contraseña</label>
+             <input type="password" id="password" [(ngModel)]="newUser.password" name="password" class="form-control" autocomplete="off" required> 
+          </div> 
+          <div class="mb-3"> 
+            <label for="clientName" class="form-label">Nombre</label> 
+            <input type="text" id="clientName" [(ngModel)]="newUser.clientName" name="clientName" class="form-control" autocomplete="off" required>
+           </div> 
+          <div class="mb-3"> 
+            <label for="clientLastName" class="form-label">Apellido</label> 
+            <input type="text" id="clientLastName" [(ngModel)]="newUser.clientLastName" name="clientLastName" class="form-control" autocomplete="off" required>
+           </div> 
+          <div class="mb-3"> 
+            <label for="clientAddress" class="form-label">Direccion</label> 
+            <input type="clientAddress" id="clientAddress" [(ngModel)]="newUser.clientAddress" name="clientAddress" class="form-control" autocomplete="off" required>
+           </div> 
+          <button type="submit" class="btn btn-primary">Registrar</button> 
+        </form> 
+      </div> 
+    </div> 
+  </div> 
 </div>
 

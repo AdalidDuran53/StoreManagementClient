@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ActionResult } from '../api/models/action-result';
 import { Router } from '@angular/router';
+import { Modal } from 'bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,15 @@ export class LoginComponent {
   userName = '';
   password = '';
   message = '';
+
+  // new user object for registration
+  newUser = { 
+    userName: '',
+    password: '',
+    clientName: '',
+    clientLastName: '',
+    clientAddress: ''
+    };
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -31,5 +42,20 @@ export class LoginComponent {
       }
     });
   }
+
+  // register new user
+  registerUser() { 
+    this.authService.register(this.newUser).subscribe({
+       next: (result: ActionResult) => { 
+        console.error('result:', result);
+        alert('Usuario registrado con éxito'); 
+        window.location.reload();
+      }, error: (err) => {
+        let errorMessage = err.error.code || 'Error en el registro';
+        console.error('Error:', err.error.code);
+         alert(errorMessage); 
+        } 
+      });
+    }
 }
 
