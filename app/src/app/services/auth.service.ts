@@ -27,6 +27,26 @@ export class AuthService {
     });
   }
 
+  // register method
+  register(user: any) {
+  const url = `${this.rootUrl}/${this.apiVersion}/Clients/AddClient`;
+
+  // set parameters
+    const params = new HttpParams()
+      .set('userName', user.userName)
+      .set('password', user.password)
+      .set('clientName', user.clientName)
+      .set('clientLastName', user.clientLastName)
+      .set('clientAddress', user.clientAddress);
+
+    
+    return this.http.post<ActionResult>(url, null, {
+      params,
+      responseType: 'json'
+    });
+}
+
+
   // delete auth data from session storage
   logout(): void { 
     sessionStorage.removeItem('authData');
