@@ -61,4 +61,9 @@ export class AuthService {
   getAuthData() { 
     return sessionStorage.getItem('authData');
   }
+
+  getautehDataObject() {
+    const authData = this.getAuthData();
+    return authData ? JSON.parse(authData) : null;
+  }
 }
