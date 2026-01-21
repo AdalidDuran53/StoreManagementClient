@@ -16,4 +16,8 @@ export class HomeComponent {
     this.authService.logout(); // delete auth data
     this.router.navigate(['/login']); // navigate to login
   }
+
+  storeManagement(): void {
+    this.router.navigate(['/stores']); // navigate to stores
+  }
 }

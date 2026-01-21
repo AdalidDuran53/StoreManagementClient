@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h2>Gestion de tiendas</h2>
+  
+  <button class="btn btn-primary mt-3" data-bs-target="#registerStoreModal"  data-bs-toggle="modal">Agregar tienda</button>
+  <button class="btn btn-danger mt-3" (click)="home()">Home</button>
+</div>
+
+<!-- Modal for registration new store -->
+ <div class="modal fade" id="registerStoreModal" tabindex="-1" aria-labelledby="registerStoreModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h5 class="modal-title" id="registerStoreModalLabel">Registrar nueva tienda</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> 
+        </div> <div class="modal-body"> <form (ngSubmit)="registerStore()"> 
+          <div class="mb-3"> 
+            <label for="storeBranch" class="form-label">Sucursal</label> 
+            <input type="text" id="storeBranch" [(ngModel)]="newStore.storeBranch" name="storeBranch" class="form-control" autocomplete="off" required> 
+          </div> 
+           <div class="mb-3"> 
+            <label for="storeAddress" class="form-label">Dirección</label>
+             <input type="text" id="storeAddress" [(ngModel)]="newStore.storeAddress" name="storeAddress" class="form-control" autocomplete="off" required> 
+          </div> 
+          <button type="submit" class="btn btn-primary">Registrar</button> 
+        </form> 
+      </div> 
+    </div> 
+  </div> 
+</div>
