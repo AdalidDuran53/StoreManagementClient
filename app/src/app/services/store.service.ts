@@ -31,4 +31,52 @@ export class StoreService {
         responseType: 'json'
       });
   }
+
+  getStores() {
+    const url = `${this.rootUrl}/${this.apiVersion}/Stores/GetStore`;
+  
+    const authData = this.authService.getAuthDataObject();
+    // set parameters
+      const params = new HttpParams()
+        .set('clientId', authData ? authData.clientId : '')
+        .set('sessionId', authData ? authData.sessionId : '')
+  
+      
+      return this.http.get<ActionResult>(url, {params,
+        responseType: 'json'});
+  }
+
+  update(store: Store) {
+    const url = `${this.rootUrl}/${this.apiVersion}/Stores/UpdateStore`;
+  
+    const authData = this.authService.getAuthDataObject();
+    // set parameters
+      const params = new HttpParams()
+        .set('clientId', authData ? authData.clientId : '')
+        .set('sessionId', authData ? authData.sessionId : '')
+        .set('storeId', store.storeId ? store.storeId : '')
+        .set('newStoreBranch', store.storeBranch)
+        .set('newStoreAddress', store.storeAddress);
+  
+      return this.http.put<ActionResult>(url, null, {
+        params,
+        responseType: 'json'
+      });
+  }
+
+  delete(store: Store) {
+    const url = `${this.rootUrl}/${this.apiVersion}/Stores/DeleteStore`;
+
+    const authData = this.authService.getAuthDataObject();
+    // set parameters
+      const params = new HttpParams()
+        .set('clientId', authData ? authData.clientId : '')
+        .set('sessionId', authData ? authData.sessionId : '')
+        .set('storeId', store.storeId ? store.storeId : '');
+  
+      return this.http.delete<ActionResult>(url, {
+        params,
+        responseType: 'json'
+      });
+  }
 }
