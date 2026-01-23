@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 <div class="container mt-5">
     <h2>Gestion de articulos</h2>
-  
-    <button class="btn btn-primary mt-3 m-2"  data-bs-target="#registerItemModal"  data-bs-toggle="modal">Agregar articulo</button>
+
+    <button class="btn btn-primary mt-3 m-2"  data-bs-target="#registerItemModal" (click)="openModalRegister()" data-bs-toggle="modal">Agregar articulo</button>
 
      <table class="table">
   <thead>
