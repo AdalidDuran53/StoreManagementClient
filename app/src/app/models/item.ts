@@ -5,4 +5,5 @@ export interface Item {
     itemPrice: number,
     itemStock: number,
     itemImg: File;
+    itemAmount?: number;
 }
