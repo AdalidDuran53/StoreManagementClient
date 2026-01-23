@@ -1,0 +1,10 @@
+.navbar-brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.dropdown-menu {
+  min-width: 200px;
+}
+.custommargin {
+  margin-right: 7rem;
+}
