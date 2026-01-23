@@ -1,8 +1,8 @@
 <div class="container mt-5">
   <h2>Gestion de tiendas</h2>
   
-  <button class="btn btn-primary mt-3" (click)="openModalRegister()" data-bs-target="#registerStoreModal"  data-bs-toggle="modal">Agregar tienda</button>
-  <button class="btn btn-danger mt-3" (click)="home()">Home</button>
+  <button class="btn btn-primary mt-3 m-2" (click)="openModalRegister()" data-bs-target="#registerStoreModal"  data-bs-toggle="modal">Agregar tienda</button>
+  <button class="btn btn-danger mt-3 m-2" (click)="home()">Home</button>
 
   <table class="table">
   <thead>
@@ -17,8 +17,8 @@
       <td>{{ store.storeBranch }}</td>
       <td>{{ store.storeAddress }}</td>
       <td> 
-        <button class="btn btn-sm btn-primary" (click)="openUpdateModal(store)" data-bs-target="#registerStoreModal"  data-bs-toggle="modal">Editar</button>
-        <button class="btn btn-sm btn-danger" (click)="deleteRegister(store)" data-bs-target="#registerDeleteModal"  data-bs-toggle="modal">Eliminar</button>
+        <button class="btn btn-sm btn-primary m-2" (click)="openUpdateModal(store)" data-bs-target="#registerStoreModal"  data-bs-toggle="modal">Editar</button>
+        <button class="btn btn-sm btn-danger m-2" (click)="deleteRegister(store)" data-bs-target="#registerDeleteModal"  data-bs-toggle="modal">Eliminar</button>
         </td>
       <td ></td>
     </tr>

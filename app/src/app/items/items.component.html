@@ -1,0 +1,84 @@
+<div class="container mt-5">
+    <h2>Gestion de articulos</h2>
+  
+    <button class="btn btn-primary mt-3 m-2"  data-bs-target="#registerItemModal"  data-bs-toggle="modal">Agregar articulo</button>
+    <button class="btn btn-danger mt-3 m-2" (click)="home()">Home</button>
+
+     <table class="table">
+  <thead>
+    <tr>
+      <th width="150"></th>
+      <th>Codigo</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of itemList">
+      <td><img [src]="'data:image/png;base64,' + item.itemImg" alt="Imagen del artículo" width="150"></td>
+      <td>{{ item.itemCode }}</td>
+      <td>{{ item.itemDescription }}</td>
+      <td>{{ item.itemPrice }}</td>
+      <td>{{ item.itemStock }}</td>
+      <td> 
+        <button class="btn btn-sm btn-primary m-2" (click)="openUpdateModal(item)" data-bs-target="#registerItemModal"  data-bs-toggle="modal">Editar</button>
+        <button class="btn btn-sm btn-danger m-2" (click)="openUpdateModal(item)" data-bs-target="#registerDeleteModal"  data-bs-toggle="modal">Eliminar</button>
+        </td>
+      <td ></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Modal for registration or update item -->
+ <div class="modal fade" id="registerItemModal" tabindex="-1" aria-labelledby="registerItemModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h5 class="modal-title" id="registerItemModalLabel">Registrar nuevo articulo</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> 
+        </div> <div class="modal-body"> <form (ngSubmit)="registerItem()"> 
+          <div class="mb-3"> 
+            <label for="itemCode" class="form-label">Codigo</label> 
+            <input type="text" id="itemCode" [(ngModel)]="newItem.itemCode" name="itemCode" class="form-control" autocomplete="off" required> 
+          </div> 
+           <div class="mb-3"> 
+            <label for="itemDescription" class="form-label">Descripción</label>
+             <input type="text" id="itemDescription" [(ngModel)]="newItem.itemDescription" name="itemDescription" class="form-control" autocomplete="off" required>
+          </div> 
+          <div class="mb-3"> 
+            <label for="itemPrice" class="form-label">Precio</label>
+             <input type="number" id="itemPrice" [(ngModel)]="newItem.itemPrice" name="itemPrice" class="form-control" autocomplete="off" required>
+          </div> 
+          <div class="mb-3"> 
+            <label for="itemStock" class="form-label">Stock</label>
+             <input type="number" id="itemStock" [(ngModel)]="newItem.itemStock" name="itemStock" class="form-control" autocomplete="off" required>
+          </div> 
+          <div class="mb-3"> 
+            <input type="file" id="itemImg" (change)="onFileSelected($event)" class="form-control" autocomplete="off">
+          </div> 
+          <button type="submit" class="btn btn-primary">Registrar</button> 
+        </form> 
+      </div> 
+    </div> 
+  </div> 
+</div>
+
+<!-- Modal for confirmation delete -->
+ <div class="modal fade" id="registerDeleteModal" tabindex="-1" aria-labelledby="registerDeleteModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h5 class="modal-title" id="registerDeleteModalLabel">¿Estás seguro de eliminar este registro?</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> 
+        </div> <div class="modal-body"> 
+          <form (ngSubmit)="registerDelete()"> 
+          <button type="button" class="btn btn-primary m-2" data-bs-dismiss="modal">Cancelar</button> 
+          <button type="submit" class="btn btn-danger m-2">Eliminar</button> 
+        </form> 
+      </div> 
+    </div> 
+  </div> 
+</div>
