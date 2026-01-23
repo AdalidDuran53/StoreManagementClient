@@ -4,6 +4,8 @@ import { ItemService } from '../services/item.service';
 import { ActionResult } from '../api/models';
 import { ItemClientService } from '../services/item-client.service';
 import { ItemClient } from '../models/item-client';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-catalog',
@@ -12,7 +14,7 @@ import { ItemClient } from '../models/item-client';
 })
 export class CatalogComponent implements OnInit {
 
-  constructor(private itemService: ItemService, private itemClientService: ItemClientService) { this.getItems(); }
+  constructor(private itemService: ItemService, private itemClientService: ItemClientService, private cartService: CartService) { this.getItems(); }
 
   ngOnInit(): void {
   }
@@ -35,6 +37,7 @@ export class CatalogComponent implements OnInit {
 
   // method to get client items
   getItemsClient() {
+    this.cartService.updateCartCount();
     this.itemClientService.getItems().subscribe({
                next: (result: ActionResult) => {
                 // populate itemsClientList
