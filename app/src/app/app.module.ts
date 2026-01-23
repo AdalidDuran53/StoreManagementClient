@@ -11,6 +11,7 @@ import { StoresComponent } from './stores/stores.component';
 import { ItemsComponent } from './items/items.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CatalogComponent } from './catalog/catalog.component';
     StoresComponent,
     ItemsComponent,
     NavbarComponent,
-    CatalogComponent
+    CatalogComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
