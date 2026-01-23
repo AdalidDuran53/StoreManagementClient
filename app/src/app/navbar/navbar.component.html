@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-5" (click)="home()">Store Management Client</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto custommargin">
+        <li class="nav-item">
+          <button class="nav-link active" aria-current="page" (click)="home()">Inicio</button>
+        </li>
+        
+        <!-- Dropdown menu for options -->
+        <li ngbDropdown class="nav-item dropdown">
+        <button ngbDropdownToggle class="nav-link dropdown-toggle">Opciones</button>
+            <ul ngbDropdownMenu class="dropdown-menu">
+                <li><button class="dropdown-item" (click)="storeManagement()">Administrar tiendas</button></li>
+                <li><button class="dropdown-item" (click)="itemManagement()">Administrar artículos</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button class="dropdown-item" (click)="logout()">Cerrar sesión</button></li>
+            </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

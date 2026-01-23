@@ -11,17 +11,4 @@ export class HomeComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  // logout method
-  logout(): void {
-    this.authService.logout(); // delete auth data
-    this.router.navigate(['/login']); // navigate to login
-  }
-
-  storeManagement(): void {
-    this.router.navigate(['/stores']); // navigate to stores
-  }
-
-  itemManagement(): void {
-    this.router.navigate(['/items']); // navigate to items
-  }
 }

@@ -21,11 +21,6 @@ storeList: Store[] = [ ];
 
   constructor(private router: Router, private StoreServices: StoreService) { this.getStores(); }
 
-  // nagigate to home
-  home(): void {
-    this.router.navigate(['/home']); // navigate to home
-  }
-
   // store to be updated
   selectedStore: Store | null = null;
 

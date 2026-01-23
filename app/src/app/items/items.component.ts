@@ -29,12 +29,8 @@ export class ItemsComponent implements OnInit {
     this.getItems();
   }
 
-  home(): void {
-    this.router.navigate(['/home']); // navigate to home
-  }
-
   selectedItem: Item | null = null;
-
+  
   openUpdateModal(item: Item) {
     this.selectedItem = { ...item }; // populate form with item data
   }
