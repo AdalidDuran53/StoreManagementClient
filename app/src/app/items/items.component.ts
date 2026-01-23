@@ -33,10 +33,17 @@ export class ItemsComponent implements OnInit {
   
   openUpdateModal(item: Item) {
     this.selectedItem = { ...item }; // populate form with item data
+    this.newItem = { ...item }; // populate newItem with item data
   }
 
   openModalRegister() {
     this.selectedItem = null; // clear form for new item
+    this.newItem = {
+      itemCode: '',
+      itemDescription: '',
+      itemPrice: 0,
+      itemStock: 0,
+      itemImg: null as any}; // reset newItem
   }
 
 

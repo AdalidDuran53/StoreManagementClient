@@ -26,10 +26,15 @@ storeList: Store[] = [ ];
 
   openUpdateModal(store: Store) {
     this.selectedStore = { ...store }; // populate form with store data
+    this.newStore = { ...store }; // populate newStore with store data
   }
 
   openModalRegister() {
     this.selectedStore = null; // clear form for new store
+    this.newStore = {
+      storeBranch: '',
+      storeAddress: ''
+    }; // reset newStore
   }
 
   deleteRegister(store: Store) {
