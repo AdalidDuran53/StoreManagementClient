@@ -20,4 +20,8 @@ export class HomeComponent {
   storeManagement(): void {
     this.router.navigate(['/stores']); // navigate to stores
   }
+
+  itemManagement(): void {
+    this.router.navigate(['/items']); // navigate to items
+  }
 }
