@@ -8,6 +8,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
 import { ActionResult } from '../api/models';
 import { CartService } from '../services/cart.service';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,7 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private itemClientService: ItemClientService, private itemService: ItemService, private router: Router, private cartService : CartService) { this.getItemsClient(); }
+  constructor(private itemClientService: ItemClientService, private itemService: ItemService, private router: Router, private cartService : CartService, private loaderService: LoaderService) { this.getItemsClient(); this.addLoading(); }
 
   ngOnInit(): void {
   }
@@ -106,6 +107,7 @@ export class CartComponent implements OnInit {
 
       // method to add item
         addItem(itemCart : ItemCart) {
+          this.addLoading();
            const item = this.mapItemCarttoItem(itemCart);
           if(((this.itemClientList.find(ic => ic.itemId === item.itemId)?.itemAmount ?? 0) + 1 || 1) > item.itemStock){
             alert('No hay stock disponible para este artículo');
@@ -131,9 +133,10 @@ export class CartComponent implements OnInit {
               this.itemRegister(item);
               }
         }
-        loading = false;
+
         // method to remove item
         removeItem(itemCart : ItemCart) {
+          this.addLoading();
            const item = this.mapItemCarttoItem(itemCart);
           // decrease item amount if already in list
           if(this.itemClientList.some(ic => ic.itemId === item.itemId)){
@@ -182,4 +185,7 @@ export class CartComponent implements OnInit {
               return item;
           }
 
+    addLoading(){
+      this.loaderService.addDefaultLoader();
+    }
 }

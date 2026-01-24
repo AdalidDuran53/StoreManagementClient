@@ -6,6 +6,7 @@ import { ItemClientService } from '../services/item-client.service';
 import { ItemClient } from '../models/item-client';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CartService } from '../services/cart.service';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-catalog',
@@ -14,7 +15,7 @@ import { CartService } from '../services/cart.service';
 })
 export class CatalogComponent implements OnInit {
 
-  constructor(private itemService: ItemService, private itemClientService: ItemClientService, private cartService: CartService) { this.getItems(); }
+  constructor(private itemService: ItemService, private itemClientService: ItemClientService, private cartService: CartService,private loaderService: LoaderService) { this.getItems(); }
 
   ngOnInit(): void {
   }
@@ -82,7 +83,6 @@ export class CatalogComponent implements OnInit {
         this.itemRegister(item);
         }
   }
-  loading = false;
   // method to remove item
   removeItem(item : Item) {
     this.addLoading();
@@ -118,8 +118,7 @@ export class CatalogComponent implements OnInit {
              });
     }
 
-    addLoading() : void {
-      this.loading = true; // show loading spinner
-      setTimeout(() => { this.loading = false; }, 1500);
+    addLoading(){
+      this.loaderService.addDefaultLoader();
     }
 }

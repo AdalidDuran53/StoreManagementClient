@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class HomeComponent {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private loaderService: LoaderService) { this.addLoading(); }
 
+  
+    addLoading(){
+      this.loaderService.addDefaultLoader();
+    }
 }

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ActionResult } from '../api/models';
 import { ItemService } from '../services/item.service';
+import { LoaderService } from '../services/loader.service';
 
 @Injectable({ providedIn: 'root' })
 
@@ -23,7 +24,7 @@ export class ItemsComponent implements OnInit {
     itemImg: null as any
 }
   itemList: Item[] = [ ];
-  constructor(private router: Router, private itemService: ItemService) { }
+  constructor(private router: Router, private itemService: ItemService, private loaderService : LoaderService) {  this.addLoading(); }
 
   ngOnInit(): void {
     this.getItems();
@@ -136,5 +137,8 @@ registerDelete() {
        });
   }
 
+  addLoading(){
+      this.loaderService.addDefaultLoader();
+    }
   
 }

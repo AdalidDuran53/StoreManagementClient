@@ -4,6 +4,7 @@ import { Store } from '../models/store';
 import { StoreService } from '../services/store.service';
 import { ActionResult } from '../api/models';
 import { data } from 'jquery';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-stores',
@@ -19,7 +20,7 @@ newStore : Store  = {
 
 storeList: Store[] = [ ];
 
-  constructor(private router: Router, private StoreServices: StoreService) { this.getStores(); }
+  constructor(private router: Router, private StoreServices: StoreService, private loaderService : LoaderService) { this.getStores(); this.addLoading(); }
 
   // store to be updated
   selectedStore: Store | null = null;
@@ -118,5 +119,9 @@ storeList: Store[] = [ ];
          } 
        });
      }
+
+     addLoading(){
+      this.loaderService.addDefaultLoader();
+    }
 
 }
