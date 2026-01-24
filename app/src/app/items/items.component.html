@@ -20,7 +20,7 @@
       <td><img [src]="'data:image/png;base64,' + item.itemImg" alt="Imagen del artículo" width="150"></td>
       <td>{{ item.itemCode }}</td>
       <td>{{ item.itemDescription }}</td>
-      <td>{{ item.itemPrice }}</td>
+      <td>{{ item.itemPrice | currency:'MXN':'symbol' }}</td>
       <td>{{ item.itemStock }}</td>
       <td> 
         <button class="btn btn-sm btn-primary m-2" (click)="openUpdateModal(item)" data-bs-target="#registerItemModal"  data-bs-toggle="modal">Editar</button>
