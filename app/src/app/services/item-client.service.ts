@@ -72,4 +72,20 @@ export class ItemClientService {
             responseType: 'json'
           });
       }
+
+      sell(){
+        const url = `${this.rootUrl}/${this.apiVersion}/ItemsClient/SellItem`;
+      
+        const authData = this.authService.getAuthDataObject();
+        // set parameters
+          const params = new HttpParams()
+            .set('clientId', authData ? authData.clientId : '')
+            .set('sessionId', authData ? authData.sessionId : '');
+  
+  
+          return this.http.put<ActionResult>(url, null,{
+            params,
+            responseType: 'json'
+          });
+      }
 }

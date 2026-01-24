@@ -13,11 +13,11 @@
           </p>
         </div>
         <div class="card-footer text-muted d-flex justify-content-between align-items-center">
-          <span class="fw-bold">${{item.itemPrice}}</span>
-          <div class="btn-group" *ngIf="item.itemAmount && item.itemAmount > 0" role="group"> 
-            <button class="btn btn-danger btn-sm" (click)="removeItem(item)" >-</button> 
-                <span class="mx-3">{{item.itemAmount}}</span>
-            <button class="btn btn-primary btn-sm" (click)="addItem(item)">+</button>
+          <span class="fw-bold">{{item.itemPrice | currency:'MXN':'symbol'}}</span>
+          <div class="btn-group btn-group-sm addgroup-btn" *ngIf="item.itemAmount && item.itemAmount > 0" >
+              <button class="btn btn-secondary btn-sm" type="button" (click)="removeItem(item)">-</button>
+              <span  type="text" class="form-control  form-control-sm text-center">{{item.itemAmount}}</span>
+              <button class="btn btn-primary btn-sm" type="button" (click)="addItem(item)">+</button>
           </div>
           <button *ngIf="!item.itemAmount || item.itemAmount === 0" class="btn btn-primary btn-sm" [disabled]="item.itemStock === 0" (click)="addItem(item)"> {{ item.itemStock > 0 ? 'Agregar al carrito' : 'Agotado' }} </button>
         </div>
