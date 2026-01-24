@@ -7,6 +7,7 @@ import { ItemCart } from '../models/item-cart';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
 import { ActionResult } from '../api/models';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,7 @@ import { ActionResult } from '../api/models';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private itemClientService: ItemClientService, private itemService: ItemService, private router: Router) { this.getItemsClient(); }
+  constructor(private itemClientService: ItemClientService, private itemService: ItemService, private router: Router, private cartService : CartService) { this.getItemsClient(); }
 
   ngOnInit(): void {
   }
@@ -30,6 +31,7 @@ export class CartComponent implements OnInit {
 
   // get items in cart
   getItemsClient() {
+    this.cartService.updateCartCount();
     this.itemClientService.getItems().subscribe({
                next: (result) => {
                 // populate itemsClientList
