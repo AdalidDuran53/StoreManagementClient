@@ -7,6 +7,7 @@ import { LoginGuard } from './login.guard';
 import { StoresComponent } from './stores/stores.component';
 import { ItemsComponent } from './items/items.component';
 import { CartComponent } from './cart/cart.component';
+import { InvetoryComponent } from './invetory/invetory.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'stores', component: StoresComponent, canActivate: [AuthGuard]},
   { path: 'items', component: ItemsComponent, canActivate: [AuthGuard]},
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
+  { path: 'inventory', component: InvetoryComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 

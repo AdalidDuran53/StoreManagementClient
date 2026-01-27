@@ -124,4 +124,8 @@ storeList: Store[] = [ ];
       this.loaderService.addDefaultLoader();
     }
 
+    inventory(store: Store){
+      this.router.navigate(['/inventory'],{state:{store: store}});
+    }
+
 }
