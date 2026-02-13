@@ -6,9 +6,9 @@
           <h3 class="card-title text-center mb-4">Login</h3>
           <form (ngSubmit)="onLogin()">
             <div class="mb-3">
-              <label for="userName" class="form-label">Usuario</label>
+              <label for="userName" class="form-label">Email</label>
               <input [(ngModel)]="userName" name="userName" id="userName" 
-                     class="form-control" placeholder="Ingresa tu usuario" required />
+                     class="form-control" placeholder="usuario@ejemplo.com" type="email" required />
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Contraseña</label>
@@ -34,8 +34,8 @@
          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> 
         </div> <div class="modal-body"> <form (ngSubmit)="registerUser()"> 
           <div class="mb-3"> 
-            <label for="username" class="form-label">Usuario</label> 
-            <input type="text" id="username" [(ngModel)]="newUser.userName" name="username" class="form-control" autocomplete="off" required> 
+            <label for="username" class="form-label">Email</label> 
+            <input type="text" id="username" [(ngModel)]="newUser.userName" placeholder="usuario@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="username" class="form-control" autocomplete="off" required> 
           </div> 
            <div class="mb-3"> 
             <label for="password" class="form-label">Contraseña</label>
@@ -59,4 +59,5 @@
     </div> 
   </div> 
 </div>
+<app-loader></app-loader>
 

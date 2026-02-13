@@ -14,7 +14,11 @@ export class LoginGuard implements CanActivate {
 
     // if there is auth data, redirect to home
     if (authData) {
-      this.router.navigate(['/home']);
+      const authObject = this.authService.getAuthDataObject();
+      if(authObject.data != '' && authObject.data != null && authObject.data != undefined)
+        this.router.navigate(['/Verifycode']);
+      else
+        this.router.navigate(['/home']);
       return false;
     }
     // allow access to login

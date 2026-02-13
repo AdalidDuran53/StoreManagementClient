@@ -4,6 +4,7 @@ import { ActionResult } from '../api/models/action-result';
 import { Router } from '@angular/router';
 import { Modal } from 'bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -24,16 +25,23 @@ export class LoginComponent {
     clientAddress: ''
     };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private loaderServices : LoaderService) { this.addLoader() }
 
   onLogin() {
+    this.addLoader();
     this.authService.login(this.userName, this.password).subscribe({
       next: (result: ActionResult) => {
         this.message = 'Login exitoso';
         // store auth data in session storage
         sessionStorage.setItem('authData', JSON.stringify(result));
-        // navigate to home
-        this.router.navigate(['/home']);
+        
+        const authObject = this.authService.getAuthDataObject();
+        if(authObject.data != '' && authObject.data != null && authObject.data != undefined){
+          this.router.navigate(['/Verifycode']);
+        }else {
+          // navigate to home
+          this.router.navigate(['/home']);
+        }
       },
       error: (err) => {
         // show error message
@@ -45,6 +53,7 @@ export class LoginComponent {
 
   // register new user
   registerUser() { 
+    this.addLoader();
     this.authService.register(this.newUser).subscribe({
        next: (result: ActionResult) => { 
         console.error('result:', result);
@@ -57,5 +66,9 @@ export class LoginComponent {
         } 
       });
     }
+
+    addLoader(){
+    this.loaderServices.addDefaultLoader();
+  }
 }
 
