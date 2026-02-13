@@ -17,9 +17,13 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/login']);
       return false; // block access
     }
+    const authObject = this.authService.getAuthDataObject();
+    if( authData && authObject.data != '' && authObject.data != null && authObject.data != undefined){
+      this.router.navigate(['/Verifycode']);
+      return true; // block access
+    }
 
     return true; // allow access
   }
-
   
 }

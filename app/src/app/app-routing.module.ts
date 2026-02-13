@@ -8,9 +8,11 @@ import { StoresComponent } from './stores/stores.component';
 import { ItemsComponent } from './items/items.component';
 import { CartComponent } from './cart/cart.component';
 import { InvetoryComponent } from './invetory/invetory.component';
+import { VerifycodeComponent } from './verifycode/verifycode.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'Verifycode', component: VerifycodeComponent},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'stores', component: StoresComponent, canActivate: [AuthGuard]},
   { path: 'items', component: ItemsComponent, canActivate: [AuthGuard]},

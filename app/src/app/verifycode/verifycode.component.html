@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">Verificar código de email</h4>
+
+          <form (ngSubmit)="onSubmit()" #form="ngForm">
+            <div class="form-group mb-3">
+              <label for="code">Código de verificación</label>
+              <input
+                type="text"
+                id="code"
+                name="code"
+                [(ngModel)]="code"
+                required
+                pattern="^[0-9]{6}$"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && form.controls.code?.invalid }"
+                placeholder="Ingresa tu código de 6 dígitos"
+              />
+              <div *ngIf="submitted && form.controls.code?.invalid" class="invalid-feedback">
+                <div *ngIf="form.controls.code?.errors?.required">El código es obligatorio</div>
+                <div *ngIf="form.controls.code?.errors?.pattern">Debe ser un código de 6 dígitos</div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-2">Verificar</button>
+            
+            <p class="text-muted mt-2">
+                Si no ves el correo en tu bandeja de entrada, revisa la carpeta de <strong>Spam</strong> o <strong>Correo no deseado</strong>.
+            </p>
+          </form>
+
+          <div *ngIf="verificationResult" class="alert mt-3"
+               [ngClass]="verificationResult.includes('✅') ? 'alert-success' : 'alert-danger'">
+            {{ verificationResult }}
+          </div>
+
+          <hr />
+
+          <!-- Botón para pedir nuevo código -->
+          <button class="btn btn-secondary w-100 mb-2"
+                  [disabled]="!canRequestNewCode"
+                  (click)="requestNewCode()">
+            {{ canRequestNewCode ? 'Pedir nuevo código' : 'Espera ' + countdown + 's' }}
+          </button>
+
+          <!-- Botón para cerrar sesión -->
+          <button class="btn btn-danger w-100" (click)="logout()">Cerrar sesión</button>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader></app-loader>

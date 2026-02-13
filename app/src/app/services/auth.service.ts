@@ -17,7 +17,7 @@ export class AuthService {
     const url = `${this.rootUrl}/${this.apiVersion}/Clients/Login`;
 
     const params = new HttpParams()
-      .set('userName', userName)
+      .set('emailAddress', userName)
       .set('password', password);
 
     
@@ -33,11 +33,45 @@ export class AuthService {
 
   // set parameters
     const params = new HttpParams()
-      .set('userName', user.userName)
+      .set('emailAddress', user.userName)
       .set('password', user.password)
       .set('clientName', user.clientName)
       .set('clientLastName', user.clientLastName)
       .set('clientAddress', user.clientAddress);
+
+    
+    return this.http.post<ActionResult>(url, null, {
+      params,
+      responseType: 'json'
+    });
+}
+
+requestVerifyCode(){
+  
+  const url = `${this.rootUrl}/${this.apiVersion}/Clients/RequestVerifyCode`;
+  const authData = this.getAuthDataObject();
+  // set parameters
+    const params = new HttpParams()
+      .set('clientId', authData ? authData.clientId : '')
+      .set('sessionId', authData ? authData.sessionId : '');
+
+    
+    return this.http.post<ActionResult>(url, null, {
+      params,
+      responseType: 'json'
+    });
+}
+
+VerifyCode(code : any){
+  
+  const url = `${this.rootUrl}/${this.apiVersion}/Clients/VerifyCode`;
+  const authData = this.getAuthDataObject();
+  // set parameters
+    const params = new HttpParams()
+      .set('clientId', authData ? authData.clientId : '')
+      .set('sessionId', authData ? authData.sessionId : '')
+      .set('token', authData ? authData.data : '')
+      .set('code', authData ? code : '');
 
     
     return this.http.post<ActionResult>(url, null, {
