@@ -13,6 +13,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { CartComponent } from './cart/cart.component';
 import { LoaderComponent } from './loader/loader.component';
+import { InvetoryComponent } from './invetory/invetory.component';
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatSelectModule } from '@angular/material/select'; 
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,14 +29,19 @@ import { LoaderComponent } from './loader/loader.component';
     NavbarComponent,
     CatalogComponent,
     CartComponent,
-    LoaderComponent
+    LoaderComponent,
+    InvetoryComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule, 
+    MatFormFieldModule, 
+    MatSelectModule,
+    MatInputModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

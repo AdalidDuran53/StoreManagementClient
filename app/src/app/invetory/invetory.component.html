@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <h2>Gestion de inventario</h2>
+
+    <button class="btn btn-primary mt-3 m-2"  data-bs-target="#registerInventoryModal" data-bs-toggle="modal">Agregar articulo a tienda</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th width="150"></th>
+      <th>Codigo</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of itemInventoryList">
+      <td><img [src]="'data:image/png;base64,' + item.itemImg" alt="Imagen del artículo" width="150"></td>
+      <td>{{ item.itemCode }}</td>
+      <td>{{ item.itemDescription }}</td>
+      <td>{{ item.itemPrice | currency:'MXN':'symbol' }}</td>
+      <td>{{ item.itemStock }}</td>
+      <td> 
+        <button class="btn btn-sm btn-danger m-2" (click)="openUpdateModal(item)" data-bs-target="#registerDeleteModal"  data-bs-toggle="modal">Eliminar</button>
+      </td>
+      <td ></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<app-loader></app-loader>
+
+
+<!-- Modal for registration item -->
+ <div class="modal fade" id="registerInventoryModal" tabindex="-1" aria-labelledby="registerInventoryModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h5 class="modal-title" id="registerInventoryModalLabel">Agregar articulo al inventario</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> 
+        </div> <div class="modal-body"> <form (ngSubmit)="registerInventory(currentItem)"> 
+          <div class="mb-3"> 
+            <label for="storeBranch" class="form-label">Sucursal</label> 
+            <input type="text" id="storeBranch" [(ngModel)]="currentStore.storeBranch" name="storeBranch" class="form-control" disabled="disabled" autocomplete="off" required> 
+          </div> 
+           <div class="mb-3"> 
+            <p for="storeAddress" class="form-label">Articulo</p>
+             <mat-form-field appearance="fill">
+                <mat-label>Selecciona una opción</mat-label>
+                <mat-select [(value)]="currentItem">
+                    <mat-option *ngFor="let item of itemList" [value]="item">
+                    {{ item.itemCode }}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+
+          </div> 
+          <button type="submit" class="btn btn-primary">Registrar</button> 
+        </form> 
+      </div> 
+    </div> 
+  </div> 
+</div>
+
+<!-- Modal for confirmation delete -->
+ <div class="modal fade" id="registerDeleteModal" tabindex="-1" aria-labelledby="registerDeleteModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h5 class="modal-title" id="registerDeleteModalLabel">¿Estás seguro de eliminar este registro?</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> 
+        </div> <div class="modal-body"> 
+          <form (ngSubmit)="deleteRegister()"> 
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button> 
+          <button type="submit" class="btn btn-danger">Eliminar</button> 
+        </form> 
+      </div> 
+    </div> 
+  </div> 
+</div>
