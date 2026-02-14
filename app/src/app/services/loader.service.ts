@@ -13,6 +13,6 @@ loading$ = this.loading.asObservable();
 
   addDefaultLoader(){
     this.show(); 
-    setTimeout(() => { this.hide(); }, 1000);
+    setTimeout(() => { this.hide(); }, 1500);
   }
 }

@@ -4,16 +4,25 @@
       <div class="card shadow">
         <div class="card-body">
           <h3 class="card-title text-center mb-4">Login</h3>
-          <form (ngSubmit)="onLogin()">
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <div class="mb-3">
-              <label for="userName" class="form-label">Email</label>
-              <input [(ngModel)]="userName" name="userName" id="userName" 
-                     class="form-control" placeholder="usuario@ejemplo.com" type="email" required />
+              <label class="form-label">Email</label>
+              <input formControlName="userName" id="userName" 
+                     class="form-control" placeholder="usuario@ejemplo.com" type="email" required 
+                     [class.is-invalid]="loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched" />
+              <div *ngIf="loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched" class="invalid-feedback"> 
+                <div *ngIf="loginForm.get('userName')?.errors?.required">El correo es obligatorio</div> 
+                <div *ngIf="loginForm.get('userName')?.errors?.email">Debe ser un correo válido</div> 
+              </div>       
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Contraseña</label>
-              <input [(ngModel)]="password" name="password" id="password" type="password" 
-                     class="form-control" placeholder="Ingresa tu contraseña" required />
+              <label class="form-label">Contraseña</label>
+              <input formControlName="password" id="password" type="password" 
+                     class="form-control" placeholder="Ingresa tu contraseña" required 
+                     [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"/>
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="invalid-feedback"> 
+                <div *ngIf="loginForm.get('password')?.errors?.required">La contraseña es obligatoria</div>
+              </div>
             </div>
             <button type="submit" class="btn btn-primary w-100">Ingresar</button>
           </form>
@@ -32,26 +41,48 @@
       <div class="modal-header"> 
         <h5 class="modal-title" id="registerModalLabel">Registrar nuevo usuario</h5>
          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button> 
-        </div> <div class="modal-body"> <form (ngSubmit)="registerUser()"> 
+        </div> <div class="modal-body"> 
+          <form [formGroup]="newUserForm" (ngSubmit)="registerUser()"> 
           <div class="mb-3"> 
-            <label for="username" class="form-label">Email</label> 
-            <input type="text" id="username" [(ngModel)]="newUser.userName" placeholder="usuario@ejemplo.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="username" class="form-control" autocomplete="off" required> 
+            <label class="form-label">Email</label> 
+            <input type="text" id="userName" formControlName="userName" placeholder="usuario@ejemplo.com" class="form-control" autocomplete="off" required
+            [class.is-invalid]="newUserForm.get('userName')?.invalid && newUserForm.get('userName')?.touched">
+            <div *ngIf="newUserForm.get('userName')?.invalid && newUserForm.get('userName')?.touched" class="invalid-feedback"> 
+                <div *ngIf="newUserForm.get('userName')?.errors?.required">El correo es obligatorio</div> 
+                <div *ngIf="newUserForm.get('userName')?.errors?.email">Debe ser un correo válido</div> 
+            </div> 
           </div> 
            <div class="mb-3"> 
-            <label for="password" class="form-label">Contraseña</label>
-             <input type="password" id="password" [(ngModel)]="newUser.password" name="password" class="form-control" autocomplete="off" required> 
+            <label class="form-label">Contraseña</label>
+             <input type="password" id="password" formControlName="password" class="form-control" autocomplete="off" required
+             [class.is-invalid]="newUserForm.get('password')?.invalid && newUserForm.get('password')?.touched"> 
+              <div *ngIf="newUserForm.get('password')?.invalid && newUserForm.get('password')?.touched" class="invalid-feedback"> 
+                <div *ngIf="newUserForm.get('password')?.errors?.required">La contraseña es obligatoria</div>
+              </div>
           </div> 
           <div class="mb-3"> 
             <label for="clientName" class="form-label">Nombre</label> 
-            <input type="text" id="clientName" [(ngModel)]="newUser.clientName" name="clientName" class="form-control" autocomplete="off" required>
+            <input type="text" id="clientName" formControlName="clientName" class="form-control" autocomplete="off" required
+            [class.is-invalid]="newUserForm.get('clientName')?.invalid && newUserForm.get('clientName')?.touched">
+            <div *ngIf="newUserForm.get('clientName')?.invalid && newUserForm.get('clientName')?.touched" class="invalid-feedback"> 
+                <div *ngIf="newUserForm.get('clientName')?.errors?.required">El Nombre es obligatoria</div>
+              </div>
            </div> 
           <div class="mb-3"> 
             <label for="clientLastName" class="form-label">Apellido</label> 
-            <input type="text" id="clientLastName" [(ngModel)]="newUser.clientLastName" name="clientLastName" class="form-control" autocomplete="off" required>
+            <input type="text" id="clientLastName" formControlName="clientLastName" class="form-control" autocomplete="off" required
+            [class.is-invalid]="newUserForm.get('clientLastName')?.invalid && newUserForm.get('clientLastName')?.touched">
+            <div *ngIf="newUserForm.get('clientLastName')?.invalid && newUserForm.get('clientLastName')?.touched" class="invalid-feedback"> 
+                <div *ngIf="newUserForm.get('clientLastName')?.errors?.required">El Apellido es obligatoria</div>
+              </div>
            </div> 
           <div class="mb-3"> 
             <label for="clientAddress" class="form-label">Direccion</label> 
-            <input type="clientAddress" id="clientAddress" [(ngModel)]="newUser.clientAddress" name="clientAddress" class="form-control" autocomplete="off" required>
+            <input type="clientAddress" id="clientAddress" formControlName="clientAddress" class="form-control" autocomplete="off" required
+            [class.is-invalid]="newUserForm.get('clientAddress')?.invalid && newUserForm.get('clientAddress')?.touched">
+            <div *ngIf="newUserForm.get('clientAddress')?.invalid && newUserForm.get('clientAddress')?.touched" class="invalid-feedback"> 
+                <div *ngIf="newUserForm.get('clientAddress')?.errors?.required">La Direccion es obligatoria</div>
+              </div>
            </div> 
           <button type="submit" class="btn btn-primary">Registrar</button> 
         </form> 

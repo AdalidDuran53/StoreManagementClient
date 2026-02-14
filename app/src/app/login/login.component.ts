@@ -12,10 +12,9 @@ import { LoaderService } from '../services/loader.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  userName = '';
-  password = '';
   message = '';
-
+  loginForm: FormGroup;
+  newUserForm: FormGroup;
   // new user object for registration
   newUser = { 
     userName: '',
@@ -25,11 +24,27 @@ export class LoginComponent {
     clientAddress: ''
     };
 
-  constructor(private authService: AuthService, private router: Router, private loaderServices : LoaderService) { this.addLoader() }
+  constructor(private authService: AuthService, private router: Router, private loaderServices : LoaderService, private fb: FormBuilder) { 
+    this.loginForm = this.fb.group({ 
+      userName: ['', [Validators.required, Validators.email]], 
+      password: ['', Validators.required] 
+    });
+
+    this.newUserForm = this.fb.group({
+      userName: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      clientName: ['', Validators.required],
+      clientLastName: ['', Validators.required],
+      clientAddress: ['', Validators.required]
+    });
+
+  }
 
   onLogin() {
+    if (this.loginForm.invalid) { this.loginForm.markAllAsTouched(); return; }
     this.addLoader();
-    this.authService.login(this.userName, this.password).subscribe({
+    const { userName, password } = this.loginForm.value;
+    this.authService.login(userName, password).subscribe({
       next: (result: ActionResult) => {
         this.message = 'Login exitoso';
         // store auth data in session storage
@@ -53,7 +68,9 @@ export class LoginComponent {
 
   // register new user
   registerUser() { 
+    if (this.newUserForm.invalid) { this.newUserForm.markAllAsTouched(); return; }
     this.addLoader();
+    this.newUser = this.newUserForm.value;
     this.authService.register(this.newUser).subscribe({
        next: (result: ActionResult) => { 
         console.error('result:', result);
